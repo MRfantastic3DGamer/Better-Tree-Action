@@ -1,7 +1,7 @@
 name: "Better-Tree Action"
 description: "Run Better-Tree executable."
-color: orange
-icon: aperture
+color: "orange"
+icon: "aperture"
 author: "Your Name dhruvtgs003@gmail.com"
 inputs:
   root:
