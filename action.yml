@@ -1,6 +1,6 @@
 name: "Better-Tree Action"
-description: "Run Better-Tree executable with optional parameters."
-author: "Your Name <your.email@example.com>"
+description: "Run Better-Tree executable."
+author: "Your Name dhruvtgs003@gmail.com"
 inputs:
   root:
     description: "Root directory path"
