@@ -34,6 +34,7 @@ runs:
       run: |
         curl -L -o better-tree https://github.com/MRfantastic3DGamer/Better-Tree/blob/main/executables/better-tree
         chmod +x better-tree
+      shell: bash
 
     - name: Run Better-Tree executable
       run: |
@@ -63,3 +64,4 @@ runs:
 
         # Execute better-tree with the provided inputs
         ./better-tree "${{ inputs.root }}" "${{ inputs.doc }}" $NO_FILES_FLAG $STACK_FOLDERS_FLAG $SHOW_HIDDEN_FLAG $IGNORED_LOCATIONS
+      shell: bash
