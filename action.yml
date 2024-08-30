@@ -1,0 +1,63 @@
+name: "Better-Tree Action"
+description: "Run Better-Tree executable with optional parameters."
+author: "Your Name <your.email@example.com>"
+inputs:
+  root:
+    description: "Root directory path"
+    required: true
+  doc:
+    description: "Documentation file path"
+    required: false
+  no-files:
+    description: "Exclude files from the output"
+    required: false
+    default: "false"
+  stack-folders:
+    description: "Display folders in a stacked manner"
+    required: false
+    default: "false"
+  show-hidden:
+    description: "Include hidden files and folders"
+    required: false
+    default: "false"
+  ignored-locations:
+    description: "List of locations to ignore, separated by spaces"
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: Download Better-Tree executable
+      run: |
+        curl -L -o better-tree https://github.com/MRfantastic3DGamer/Better-Tree/blob/main/executables/better-tree
+        chmod +x better-tree
+
+    - name: Run Better-Tree executable
+      run: |
+        # Prepare flags
+        NO_FILES_FLAG=""
+        if [ "${{ inputs.no-files }}" = "true" ]; then
+          NO_FILES_FLAG="-n"
+        fi
+
+        STACK_FOLDERS_FLAG=""
+        if [ "${{ inputs.stack-folders }}" = "true" ]; then
+          STACK_FOLDERS_FLAG="-s"
+        fi
+
+        SHOW_HIDDEN_FLAG=""
+        if [ "${{ inputs.show-hidden }}" = "true" ]; then
+          SHOW_HIDDEN_FLAG="-h"
+        fi
+
+        # Prepare ignored locations
+        IGNORED_LOCATIONS=""
+        if [ ! -z "${{ inputs.ignored-locations }}" ]; then
+          for location in ${{ inputs.ignored-locations }}; do
+            IGNORED_LOCATIONS="$IGNORED_LOCATIONS -i $location"
+          done
+        fi
+
+        # Execute better-tree with the provided inputs
+        ./better-tree "${{ inputs.root }}" "${{ inputs.doc }}" $NO_FILES_FLAG $STACK_FOLDERS_FLAG $SHOW_HIDDEN_FLAG $IGNORED_LOCATIONS
