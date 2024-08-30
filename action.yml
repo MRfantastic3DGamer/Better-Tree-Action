@@ -30,38 +30,62 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Download Better-Tree executable
-      run: |
-        curl -L -o better-tree https://github.com/MRfantastic3DGamer/Better-Tree/blob/main/executables/better-tree
-        chmod +x better-tree
-      shell: bash
+steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          path: ./project
 
-    - name: Run Better-Tree executable
-      run: |
-        # Prepare flags
-        NO_FILES_FLAG=""
-        if [ "${{ inputs.no-files }}" = "true" ]; then
-          NO_FILES_FLAG="-n"
-        fi
+      - name: Get Better-Tree
+        run: |
+          sudo chmod u+w .
+          curl -L -o better-tree https://raw.githubusercontent.com/MRfantastic3DGamer/Better-Tree/main/executables/better-tree
 
-        STACK_FOLDERS_FLAG=""
-        if [ "${{ inputs.stack-folders }}" = "true" ]; then
-          STACK_FOLDERS_FLAG="-s"
-        fi
+      - name: Get exicute permission for Better-Tree
+        run: sudo chmod +x better-tree
 
-        SHOW_HIDDEN_FLAG=""
-        if [ "${{ inputs.show-hidden }}" = "true" ]; then
-          SHOW_HIDDEN_FLAG="-h"
-        fi
+      - name: Run Better-Tree Executable
+        run: |
+          tree
+          ./better-tree project/ -n
+          ./better-tree project/ project/README.md
 
-        # Prepare ignored locations
-        IGNORED_LOCATIONS=""
-        if [ ! -z "${{ inputs.ignored-locations }}" ]; then
-          for location in ${{ inputs.ignored-locations }}; do
-            IGNORED_LOCATIONS="$IGNORED_LOCATIONS -i $location"
-          done
-        fi
+      - name: Run Better-Tree executable
+        run: |
+          # Prepare flags
+          NO_FILES_FLAG=""
+          if [ "${{ inputs.no-files }}" = "true" ]; then
+            NO_FILES_FLAG="-n"
+          fi
 
-        # Execute better-tree with the provided inputs
-        ./better-tree "${{ inputs.root }}" "${{ inputs.doc }}" $NO_FILES_FLAG $STACK_FOLDERS_FLAG $SHOW_HIDDEN_FLAG $IGNORED_LOCATIONS
-      shell: bash
+          STACK_FOLDERS_FLAG=""
+          if [ "${{ inputs.stack-folders }}" = "true" ]; then
+            STACK_FOLDERS_FLAG="-s"
+          fi
+          
+          SHOW_HIDDEN_FLAG=""
+          if [ "${{ inputs.show-hidden }}" = "true" ]; then
+            SHOW_HIDDEN_FLAG="-h"
+          fi
+          
+          # Prepare ignored locations
+          IGNORED_LOCATIONS=""
+          if [ ! -z "${{ inputs.ignored-locations }}" ]; then
+            for location in ${{ inputs.ignored-locations }}; do
+              IGNORED_LOCATIONS="$IGNORED_LOCATIONS -i $location"
+            done
+          fi
+          
+          ./better-tree "${{ inputs.root }}" "${{ inputs.doc }}" $NO_FILES_FLAG $STACK_FOLDERS_FLAG $SHOW_HIDDEN_FLAG $IGNORED_LOCATIONS
+        shell: bash
+      
+      - name: Push updated docs
+        working-directory: ./project
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "[bot]Update Folder Structure"
+          git push origin master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
