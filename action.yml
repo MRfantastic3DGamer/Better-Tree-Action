@@ -40,9 +40,11 @@ runs:
       run: |
         sudo chmod u+w .
         curl -L -o better-tree https://raw.githubusercontent.com/MRfantastic3DGamer/Better-Tree/main/executables/better-tree
+      shell: bash
 
     - name: Get execute permission for Better-Tree
       run: sudo chmod +x better-tree
+      shell: bash
 
     - name: Run Better-Tree Executable
       run: |
@@ -84,5 +86,6 @@ runs:
         git add .
         git commit -m "[bot] Update Folder Structure"
         git push origin master
+      shell: bash
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
