@@ -6,7 +6,7 @@ color: "orange"
 
 inputs:
   GITHUB_TOKEN:
-    description: "Your github token"
+    description: "Your GitHub token"
     required: true
   root:
     description: "Root directory path"
@@ -15,7 +15,7 @@ inputs:
     description: "Documentation file path"
     required: false
   auto-doc:
-    description: "automatically detect the README.md that needs to be updated"
+    description: "Automatically detect the README.md that needs to be updated"
     required: false
     default: "false"
   no-files:
@@ -55,7 +55,6 @@ runs:
 
     - name: Run Better-Tree Executable
       run: |
-        
         AUTO_DOC_FLAG=""
         if [ "${{ inputs.auto-doc }}" = "true" ]; then
           AUTO_DOC_FLAG="-a"
@@ -77,14 +76,14 @@ runs:
         fi
 
         IGNORED_LOCATIONS=""
-        if [ ! -z "${{ inputs.ignored-locations }}" ]; then
+        if [ -n "${{ inputs.ignored-locations }}" ]; then
           for location in ${{ inputs.ignored-locations }}; do
             IGNORED_LOCATIONS="$IGNORED_LOCATIONS -i $location"
           done
         fi
 
         DOC_PATH=""
-        if [ ! -z "${{ inputs.doc }}" ]; then
+        if [ -n "${{ inputs.doc }}" ]; then
           DOC_PATH="${{ inputs.doc }}"
         fi
 
@@ -101,4 +100,4 @@ runs:
         git push origin master
       shell: bash
       env:
-        GITHUB_TOKEN: ${{ inputs.github-token }}
+        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
