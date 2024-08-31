@@ -56,7 +56,7 @@ runs:
     - name: Run Better-Tree Executable
       run: |
         
-        NO_FILES_FLAG=""
+        AUTO_DOC_FLAG=""
         if [ "${{ inputs.auto-doc }}" = "true" ]; then
           AUTO_DOC_FLAG="-a"
         fi
