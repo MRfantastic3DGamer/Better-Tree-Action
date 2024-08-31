@@ -5,6 +5,8 @@ icon: "aperture"
 color: "orange"
 
 inputs:
+  github-token: "Your github token"
+    required: true
   root:
     description: "Root directory path"
     required: true
@@ -88,4 +90,4 @@ runs:
         git push origin master
       shell: bash
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
