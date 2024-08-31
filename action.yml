@@ -14,6 +14,10 @@ inputs:
   doc:
     description: "Documentation file path"
     required: false
+  auto-doc:
+    description: "automatically detect the README.md that needs to be updated"
+    required: false
+    default: "false"
   no-files:
     description: "Exclude files from the output"
     required: false
@@ -51,6 +55,12 @@ runs:
 
     - name: Run Better-Tree Executable
       run: |
+        
+        NO_FILES_FLAG=""
+        if [ "${{ inputs.auto-doc }}" = "true" ]; then
+          AUTO_DOC_FLAG="-a"
+        fi
+
         NO_FILES_FLAG=""
         if [ "${{ inputs.no-files }}" = "true" ]; then
           NO_FILES_FLAG="-n"
@@ -78,7 +88,7 @@ runs:
           DOC_PATH="${{ inputs.doc }}"
         fi
 
-        ./better-tree "${{ inputs.root }}" $DOC_PATH $NO_FILES_FLAG $STACK_FOLDERS_FLAG $SHOW_HIDDEN_FLAG $IGNORED_LOCATIONS
+        ./better-tree "${{ inputs.root }}" $DOC_PATH $AUTO_DOC_FLAG $NO_FILES_FLAG $STACK_FOLDERS_FLAG $SHOW_HIDDEN_FLAG $IGNORED_LOCATIONS
       shell: bash
 
     - name: Push updated docs
