@@ -73,11 +73,8 @@ runs:
           SHOW_HIDDEN_FLAG="-h"
         fi
 
-        IGNORED_LOCATIONS=""
         if [ -n "${{ inputs.ignored-locations }}" ]; then
-          for location in ${{ inputs.ignored-locations }}; do
-            IGNORED_LOCATIONS="$IGNORED_LOCATIONS -i $location"
-          done
+          IGNORED_LOCATIONS="-i ${{ inputs.ignored-locations }}"
         fi
 
         DOC_PATH=""
