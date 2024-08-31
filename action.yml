@@ -81,7 +81,11 @@ runs:
 
         ./better-tree "${{ inputs.root }}" $DOC_PATH $AUTO_DOC_FLAG $NO_FILES_FLAG $STACK_FOLDERS_FLAG $SHOW_HIDDEN_FLAG $IGNORED_LOCATIONS
       shell: bash
-
+    
+    - name: remove Better Tree
+      run: rm ./better-tree
+      shell: bash
+      
     - name: Push updated docs
       run: |
         git config --global user.name "github-actions[bot]"
