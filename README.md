@@ -12,21 +12,16 @@ and then running the better tree will insert the project structure into that COD
 
 ### The various arguments are:
 
-GITHUB_TOKEN
-*root*: the directory, folder of which is to be drawn
-
-*doc*: [optional] path to README.md
-
-*auto-doc*: [optional] if true then we will find README.md from root directory
-
-*no-files*: [optional] if true then only folders will be drawn
-
-*stack-folders*: [optional] if true then folders/files will be stacked in case of single child
-
-*show-hiden*: [optional] if true then hidden folders/files will also be rendered
-
-*ignored-locations*: [optional] list of paths that will be ignored while rendering
-
+| **Parameter**         | **Description**                                                                       | **Optional/Mandatory** |
+|-----------------------|---------------------------------------------------------------------------------------|------------------------|
+| `GITHUB_TOKEN`        | Your GitHub tokens.                                                                   | Mandatory              |
+| `root`                | The directory, folder of which is to be drawn.                                        | Optional               |
+| `doc`                 | Path to `README.md`.                                                                  | Optional               |
+| `auto-doc`            | If `true`, the program will find `README.md` from the root directory.                 | Optional               |
+| `no-files`            | If `true`, only folders will be drawn.                                                | Optional               |
+| `stack-folders`       | If `true`, folders/files will be stacked in case of a single child.                   | Optional               |
+| `show-hidden`         | If `true`, hidden folders/files will also be rendered.                                | Optional               |
+| `ignored-locations`   | List of paths that will be ignored while rendering.                                   | Optional               |
 
 ## Example Usage
 ```yml
