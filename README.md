@@ -3,10 +3,12 @@ Create butiful folder structure diagrams and embed them into your README.md
 
 ## Usage
 
-> Add this to your readme
-> ```<!---BETTER_FILES_TREE-->```
-> "```"something"```"
-> and then running the better tree will insert the project structure into that code block.
+Add this to your readme
+```<!---BETTER_FILES_TREE-->```
+"```"
+something
+"```"
+and then running the better tree will insert the project structure into that code block.
 
 
 #### The various arguments are:
