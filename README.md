@@ -12,7 +12,7 @@ and then running the better tree will insert the project structure into that COD
 
 ### The various arguments are:
 
-| **Parameter**         | **Description**                                                                       | **Optional/Mandatory** |
+| **Parameter**         | **Description. **                                                                       | **Optional?** |
 |-----------------------|---------------------------------------------------------------------------------------|------------------------|
 | `GITHUB_TOKEN`        | Your GitHub tokens.                                                                   | Mandatory              |
 | `root`                | The directory, folder of which is to be drawn.                                        | Optional               |
