@@ -7,13 +7,13 @@ Create butiful folder structure diagrams and embed them into your README.md
 The various arguments are:
 
 GITHUB_TOKEN
-root: the directory, folder of which is to be drawn
-doc: [optional] path to README.md
-auto-doc: [optional] if true then we will find README.md from root directory
-no-files: [optional] if true then only folders will be drawn
-stack-folders: [optional] if true then folders/files will be stacked in case of single child
-show-hiden: [optional] if true then hidden folders/files will also be rendered
-ignored-locations: [optional] list of paths that will be ignored while rendering
+*root*: the directory, folder of which is to be drawn
+*doc*: [optional] path to README.md
+*auto-doc*: [optional] if true then we will find README.md from root directory
+*no-files*: [optional] if true then only folders will be drawn
+*stack-folders*: [optional] if true then folders/files will be stacked in case of single child
+*show-hiden*: [optional] if true then hidden folders/files will also be rendered
+*ignored-locations*: [optional] list of paths that will be ignored while rendering
 
 ## Example Usage
 ```yml
