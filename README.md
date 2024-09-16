@@ -2,7 +2,14 @@
 Create butiful folder structure diagrams and embed them into your README.md
 
 ## Usage
-The various arguments are:
+
+> Add this to your readme
+> <!---BETTER_FILES_TREE-->
+> ```something```
+> and then running the better tree will insert the project structure into that code block.
+
+
+#### The various arguments are:
 
 GITHUB_TOKEN
 *root*: the directory, folder of which is to be drawn
