@@ -1,5 +1,3 @@
-A github action to render folder structure in README.md using Better-Tree
-
 ## About
 Create butiful folder structure diagrams and embed them into your README.md
 
