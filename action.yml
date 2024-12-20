@@ -34,6 +34,10 @@ inputs:
     description: "List of locations to ignore, separated by spaces"
     required: false
     default: ""
+  push-repo:
+    description: "Optional repository branch or target for pushing updates"
+    required: false
+    default: "master"
 
 runs:
   using: "composite"
@@ -81,18 +85,18 @@ runs:
 
         ./better-tree "${{ inputs.root }}" $DOC_PATH $AUTO_DOC_FLAG $NO_FILES_FLAG $STACK_FOLDERS_FLAG $SHOW_HIDDEN_FLAG $IGNORED_LOCATIONS
       shell: bash
-    
-    - name: remove Better Tree
+
+    - name: Remove Better Tree
       run: rm ./better-tree
       shell: bash
-      
+
     - name: Push updated docs
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git add .
         git commit -m "[bot] Update Folder Structure"
-        git push origin master
+        git push origin "${{ inputs.push-repo }}"
       shell: bash
       env:
         GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
